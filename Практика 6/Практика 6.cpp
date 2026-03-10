@@ -1,6 +1,30 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
+int partition(int* arr, int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] >= pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int* arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
 void inputArray(int*& arr, int& n) {
     setlocale(LC_ALL, "Russian");
     cout << "Введите размер массива N: ";
@@ -21,29 +45,17 @@ void inputM(int& m, int n) {
 }
 
 int* findMaxElements(int* arr, int n, int m) {
-  
     int* tempArr = new int[n];
     for (int i = 0; i < n; i++) {
         tempArr[i] = arr[i];
     }
-
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (tempArr[j] < tempArr[j + 1]) {
-
-                int temp = tempArr[j];
-                tempArr[j] = tempArr[j + 1];
-                tempArr[j + 1] = temp;
-            }
-        }
-    }
+    
+    quickSort(tempArr, 0, n - 1);
 
     int* result = new int[m];
     for (int i = 0; i < m; i++) {
         result[i] = tempArr[i];
     }
-
-    delete[] tempArr;
 
     return result;
 }
@@ -66,11 +78,9 @@ int main() {
         int* maxElements = nullptr;
 
         inputArray(arr, n);
-
         printArray(arr, n, "Исходный массив");
 
         inputM(m, n);
-
         maxElements = findMaxElements(arr, n, m);
 
         printArray(maxElements, m, "M максимальных чисел");

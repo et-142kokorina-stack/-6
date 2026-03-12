@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 int main()
 {
     setlocale(LC_ALL,"");
@@ -11,8 +12,10 @@ int main()
     cout << "Введите N и M: ";
     cin >> N >> M;
 
+    cout << "Введите элементы массива" << endl;
     for (int i = 0; i < N; i++) {
-        arr[i] = rand() % 1000;
+        cout << "Элемент " << i + 1 << ": ";
+        cin >> arr[i];
     }
 
     cout << "Исходный массив: ";

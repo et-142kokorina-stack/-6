@@ -53,3 +53,54 @@ int main()
 
     return 0;
 }
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+
+    string html = "<html> <body>My site: https://mysite.ru Picture: <img src=https://images.com/cat.jpg> Link in quotes: \"https://quoted.ru\" Link in brackets (https://susu.ru/ru) Link with dot: https://google.com. Link with comma: https://yandex.ru, Link https://ya.ru/?npr=1&utm_referrer=https%3A%2F%2Fyandex.ru%2F and also http://web-archive.com </body></html>";
+
+    int pos = 0;
+    int num = 0;
+
+    string protocols[] = { "http://", "https://" };
+
+    cout << "Найденные гиперссылки:\n";
+
+    for (string prot : protocols)
+    {
+        pos = 0;
+        while (true)
+        {
+            int start = html.find(prot, pos);
+            if (start == -1) break;
+
+            int end = start;
+
+            while (end < html.length() &&
+                html[end] != ' ' &&
+                html[end] != '<' &&
+                html[end] != '>' &&
+                html[end] != '"' &&
+                html[end] != '\'' &&
+                html[end] != '(' &&
+                html[end] != ')')
+            {
+                end++;
+            }
+
+            num++;
+            cout << num << ". ";
+            for (int i = start; i < end; i++) cout << html[i];
+            cout << endl;
+
+            pos = end;
+        }
+    }
+
+    return 0;
+}

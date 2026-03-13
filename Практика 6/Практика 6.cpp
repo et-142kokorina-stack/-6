@@ -62,18 +62,24 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    string html = "<html> <body>My site: https://mysite.ru Picture: <img src=https://images.com/cat.jpg> Link in quotes: \"https://quoted.ru\" Link in brackets (https://susu.ru/ru) Link with dot: https://google.com. Link with comma: https://yandex.ru, Link https://ya.ru/?npr=1&utm_referrer=https%3A%2F%2Fyandex.ru%2F and also http://web-archive.com </body></html>";
-
-    int pos = 0;
+    string html;
+    string protocols[] = { "http://", "https://" };
     int num = 0;
 
-    string protocols[] = { "http://", "https://" };
+    cout << "Введите HTML текст (для завершения ввода введите пустую строку):\n";
 
-    cout << "Найденные гиперссылки:\n";
+    string line;
+    while (getline(cin, line))
+    {
+        if (line.empty()) break;
+        html += line + "\n";
+    }
+
+    cout << "\nНайденные гиперссылки:\n";
 
     for (string prot : protocols)
     {
-        pos = 0;
+        int pos = 0;
         while (true)
         {
             int start = html.find(prot, pos);
@@ -88,7 +94,8 @@ int main()
                 html[end] != '"' &&
                 html[end] != '\'' &&
                 html[end] != '(' &&
-                html[end] != ')')
+                html[end] != ')' &&
+                html[end] != '\n')  // Добавлена проверка на конец строки
             {
                 end++;
             }

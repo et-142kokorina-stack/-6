@@ -1,5 +1,6 @@
 Задача 1. Написать программу, которая находит M максимальных чисел в массиве размерности N. 
 Максимальные числа представить в виде отдельного массива.
+
 Наборы тестов:
 Введите N и M: 4 3
 Введите элементы массива
@@ -28,9 +29,25 @@ M максимальных чисел: 999, 100, 99, 78, 50
 https://www.susu.ru/ru
 https://ya.ru/?npr=1&utm_referrer=https%3A%2F%2Fyandex.ru%2F
 http://web-archive.com
-Наборы тестов:
-string html = "<html> <body>My site: https://mysite.ru Picture: <img src=https://images.com/cat.jpg> Link in quotes: \"https://quoted.ru\" Link in brackets (https://susu.ru/ru) Link with dot: https://google.com. Link with comma: https://yandex.ru, Link https://ya.ru/?npr=1&utm_referrer=https%3A%2F%2Fyandex.ru%2F and also http://web-archive.com </body></html>";
 
+Наборы тестов:
+http://simple.com http://with-path/page.html http://with-port:8080
+
+Найденные гиперссылки:
+1. http://simple.com
+2. http://with-path/page.html
+3. http://with-port:8080
+
+https://secure.com https://api.site.com/v1/users https://shop.ru/catalog/?id=123
+
+Найденные гиперссылки:
+1. https://secure.com
+2. https://api.site.com/v1/users
+3. https://shop.ru/catalog/?id=123
+
+https://mysite.ru <img src=https://images.com/cat.jpg> \"https://quoted.ru\"(https://susu.ru/ru) https://google.com. https://yandex.ru, https://ya.ru/?npr=1&utm_referrer=https%3A%2F%2Fyandex.ru%2F http://web-archive.com
+
+Найденные гиперссылки:
 1. http://web-archive.com
 2. https://mysite.ru
 3. https://images.com/cat.jpg
@@ -39,5 +56,3 @@ string html = "<html> <body>My site: https://mysite.ru Picture: <img src=https:/
 6. https://google.com
 7. https://yandex.ru
 8. https://ya.ru/?npr=1&utm_referrer=https%3A%2F%2Fyandex.ru%2F
-
-1. http://web-archive.com
